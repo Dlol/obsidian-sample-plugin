@@ -7,10 +7,12 @@ export const VIEW_TYPE_EXAMPLE = "example-view";
 export class ExampleView extends ItemView {
     component: Component;
     questionData: QuestionData;
+    reloadData: Function
 
-    constructor(leaf: WorkspaceLeaf, questionData: QuestionData) {
+    constructor(leaf: WorkspaceLeaf, questionData: QuestionData, reloadData: Function) {
         super(leaf);
         this.questionData = questionData
+        this.reloadData = reloadData
     }
 
     getViewType() {
@@ -25,7 +27,7 @@ export class ExampleView extends ItemView {
         this.component = new Component({
             target: this.contentEl,
             props: {
-                questionData: this.questionData
+                questionData: this.questionData,
             }
         })
     }

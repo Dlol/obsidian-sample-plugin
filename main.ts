@@ -59,6 +59,8 @@ export default class MyPlugin extends Plugin {
 	}
 
 	async reloadData() {
+		console.log(this.settings);
+		
 		const csvData = await backend.updateQuestions(this.settings)
 			
 		const questions = backend.questionInit(csvData);
