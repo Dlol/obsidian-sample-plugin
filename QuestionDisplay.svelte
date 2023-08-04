@@ -13,3 +13,9 @@
         Nothing matches your filters!
     {/if}
 </p>
+
+<style>
+    code {
+        font-size: 0.9rem;
+    }
+</style>
