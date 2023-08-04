@@ -9,7 +9,7 @@ export class ExampleView extends ItemView {
     questionData: QuestionData;
     reloadData: Function
 
-    constructor(leaf: WorkspaceLeaf, questionData: QuestionData, reloadData: Function) {
+    constructor(leaf: WorkspaceLeaf, questionData: QuestionData) {
         super(leaf);
         this.questionData = questionData
         this.reloadData = reloadData
