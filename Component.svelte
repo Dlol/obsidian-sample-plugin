@@ -37,20 +37,16 @@
     <h2>Categories</h2>
     <hr>
     {#if questionData.cats != undefined}
-    <details>
-        <summary>Available filter categories</summary>
-    {#each Object.keys(questionData.cats) as key}
-        <h4>{key == "world" ? "worldbuilding" : key}</h4>
-        <details>
-            <summary>{key == "world" ? "worldbuilding" : key} categories</summary>
-            <ul>
-                {#each Object.keys(questionData.cats[key]) as title}
-                    <li><b>{title}</b> - {questionData.cats[key][title]}</li>
-                {/each}
-            </ul>
-        </details>
-    {/each}
-    </details>
+        {#each Object.keys(questionData.cats) as key}
+            <details>
+                <summary><h4 class="fixsummary">{key == "world" ? "worldbuilding" : key}</h4></summary>
+                <ul>
+                    {#each Object.keys(questionData.cats[key]) as title}
+                        <li><b>{title}</b> - {questionData.cats[key][title]}</li>
+                    {/each}
+                </ul>
+            </details>
+        {/each}
     {/if}
     <p class="unemphasize">
         <em>Reload question data with new questions using the <code>Reload app data</code> command!</em>
@@ -70,5 +66,8 @@
     }
     .options button {
         grid-column-end: span 2;
+    }
+    .fixsummary {
+        display: inline;
     }
 </style>
