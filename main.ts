@@ -3,7 +3,7 @@ import { ExampleView, VIEW_TYPE_EXAMPLE } from 'MainView';
 const backend = require("backend.js")
 
 type SheetIDs = {
-	[key: string]: Number
+	[key: string]: string
 }
 
 // Remember to rename these classes and interfaces!
@@ -19,11 +19,11 @@ const DEFAULT_SETTINGS: MyPluginSettings = {
 	mySetting: 'default',
 	sheetsId: "1hkynZs2fyTYpTCzA4fISg2vT7pwTpui7H4DDGwzFmzM",
 	sheets: {
-		categories: 1210882748,
-		world: 0,
-		character: 1931742902,
-		prompt: 1378486483,
-		plot: 578448559
+		categories: "1210882748",
+		world: "0",
+		character: "1931742902",
+		prompt: "1378486483",
+		plot: "578448559"
 	},
 	questionData: {},
 }
@@ -105,13 +105,79 @@ class SampleSettingTab extends PluginSettingTab {
 		containerEl.empty();
 
 		new Setting(containerEl)
-			.setName('Setting #1')
-			.setDesc('It\'s a secret')
+			.setName("Reload Question Data")
+			.setDesc("Reloads data from Google Sheet")
+			.addButton(cb => cb
+				.setButtonText("Reload")
+				.setIcon("refresh-cw")
+				.onClick(() => {this.plugin.reloadData()}));
+		
+		containerEl.createEl("hr")
+		containerEl.createEl("h2", {text: "Secret settings"})
+
+		new Setting(containerEl)
+			.setName('Google Sheet ID')
+			.setDesc('DON\'T TOUCH UNLESS YOU KNOW WHAT YOU ARE DOING')
 			.addText(text => text
-				.setPlaceholder('Enter your secret')
-				.setValue(this.plugin.settings.mySetting)
+				.setPlaceholder('1hkynZs2fyTYpTCzA4fISg2vT7pwTpui7H4DDGwzFmzM')
+				.setValue(this.plugin.settings.sheetsId)
 				.onChange(async (value) => {
-					this.plugin.settings.mySetting = value;
+					this.plugin.settings.sheetsId = value;
+					await this.plugin.saveSettings();
+				}));
+		
+		new Setting(containerEl)
+			.setName('Categories Sheet ID')
+			.setDesc('DON\'T TOUCH UNLESS YOU KNOW WHAT YOU ARE DOING')
+			.addText(text => text
+				.setPlaceholder('1210882748')
+				.setValue(this.plugin.settings.sheets.categories)
+				.onChange(async (value) => {
+					this.plugin.settings.sheets.categories = value;
+					await this.plugin.saveSettings();
+				}));
+		
+		new Setting(containerEl)
+			.setName('World Sheet ID')
+			.setDesc('DON\'T TOUCH UNLESS YOU KNOW WHAT YOU ARE DOING')
+			.addText(text => text
+				.setPlaceholder('0')
+				.setValue(this.plugin.settings.sheets.world)
+				.onChange(async (value) => {
+					this.plugin.settings.sheets.world = value;
+					await this.plugin.saveSettings();
+				}));
+
+		new Setting(containerEl)
+			.setName('Character Sheet ID')
+			.setDesc('DON\'T TOUCH UNLESS YOU KNOW WHAT YOU ARE DOING')
+			.addText(text => text
+				.setPlaceholder('1931742902')
+				.setValue(this.plugin.settings.sheets.character)
+				.onChange(async (value) => {
+					this.plugin.settings.sheets.character = value;
+					await this.plugin.saveSettings();
+				}));
+
+		new Setting(containerEl)
+			.setName('Prompt Sheet ID')
+			.setDesc('DON\'T TOUCH UNLESS YOU KNOW WHAT YOU ARE DOING')
+			.addText(text => text
+				.setPlaceholder('1378486483')
+				.setValue(this.plugin.settings.sheets.prompt)
+				.onChange(async (value) => {
+					this.plugin.settings.sheets.prompt = value;
+					await this.plugin.saveSettings();
+				}));
+
+		new Setting(containerEl)
+			.setName('Plot Sheet ID')
+			.setDesc('DON\'T TOUCH UNLESS YOU KNOW WHAT YOU ARE DOING')
+			.addText(text => text
+				.setPlaceholder('578448559')
+				.setValue(this.plugin.settings.sheets.plot)
+				.onChange(async (value) => {
+					this.plugin.settings.sheets.plot = value;
 					await this.plugin.saveSettings();
 				}));
 	}
