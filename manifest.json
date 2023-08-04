@@ -1,7 +1,7 @@
 {
 	"id": "writing-helper",
 	"name": "Writing Helper",
-	"version": "1.0.0",
+	"version": "0.5.1",
 	"minAppVersion": "0.15.0",
 	"description": "An obsidian plugin based on the codebase for wrightehr bhaohth on discord.",
 	"author": "dlol",
