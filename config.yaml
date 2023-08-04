@@ -1,0 +1,33 @@
+# sheets config
+sheetsId: 1hkynZs2fyTYpTCzA4fISg2vT7pwTpui7H4DDGwzFmzM
+sheets:
+  categories: 1210882748
+  world: 0
+  character: 1931742902
+  prompts: 1378486483
+  plot: 578448559
+
+# file config
+files:
+  categories: categories.csv
+  character: character.csv
+  world: world.csv
+  prompt: prompts.csv
+  plot: plot.csv
+
+credits:
+  Coding: 
+    - snailmusic
+  Questions: 
+    - solariscrescent
+    - snailmusic
+    - killrbagel
+  Organization:
+    - solariscrescent
+    - snailmusic
+  Prompts:
+    - killrbagel
+    - solariscrescent
+    - https://writing-prompt-s.tumblr.com/
+    - https://blog.reedsy.com/creative-writing-prompts/
+    - https://presidentbttrflyfreak.tumblr.com/post/174722599040/heartbreaksad-dialogue-prompts
