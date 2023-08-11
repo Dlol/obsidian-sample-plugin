@@ -18,7 +18,7 @@ export class ExampleView extends ItemView {
     }
 
     getDisplayText() {
-        return "Example view";
+        return "Questions View";
     }
 
     async onOpen() {

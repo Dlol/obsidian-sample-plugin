@@ -1,6 +1,6 @@
 const { request } = require('obsidian')
 
-const toLoad = ["character", "world", "prompt", "plot"]
+const toLoad = ["character", "world", "prompt", "plot", "ttrpg"]
 
 function loadConfig(filename) {
     const yaml = require('js-yaml')
@@ -40,6 +40,7 @@ function questionInit(data) {
                 obj.at(-1).push(sub)
             }
         }
+        obj.shift()
         loaded[item] = obj
     }
     
@@ -68,6 +69,10 @@ function questionInit(data) {
 
                 case "Plot Questions":
                     currentType = "plot"
+                    break;
+
+                case "TTRPG":
+                    currentType = "ttrpg"
                     break;
             
                 default:

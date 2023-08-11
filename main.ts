@@ -23,7 +23,8 @@ const DEFAULT_SETTINGS: MyPluginSettings = {
 		world: "0",
 		character: "1931742902",
 		prompt: "1378486483",
-		plot: "578448559"
+		plot: "578448559",
+		ttrpg: "973338377"
 	},
 	questionData: {},
 }
@@ -69,6 +70,11 @@ export default class MyPlugin extends Plugin {
 		this.saveSettings()
 	}
 
+	async resetData() {
+		this.settings.questionData = {}
+		this.saveSettings()
+	}
+
 	async activateView() {
 		this.app.workspace.detachLeavesOfType(VIEW_TYPE_EXAMPLE);
 
@@ -111,11 +117,20 @@ class SampleSettingTab extends PluginSettingTab {
 				.setButtonText("Reload")
 				.setIcon("refresh-cw")
 				.onClick(() => {this.plugin.reloadData()}));
+
+		new Setting(containerEl)
+			.setName("Reset Question Data")
+			.setDesc("Deletes all question data")
+			.addButton(cb => cb
+				.setButtonText("Delete")
+				.setIcon("refresh-ccw")
+				.onClick(() => {this.plugin.resetData()}));
 		
 		containerEl.createEl("hr")
 		containerEl.createEl("h2", {text: "Secret settings"})
+		const details = containerEl.createEl("details")
 
-		new Setting(containerEl)
+		new Setting(details)
 			.setName('Google Sheet ID')
 			.setDesc('DON\'T TOUCH UNLESS YOU KNOW WHAT YOU ARE DOING')
 			.addText(text => text
@@ -126,7 +141,7 @@ class SampleSettingTab extends PluginSettingTab {
 					await this.plugin.saveSettings();
 				}));
 		
-		new Setting(containerEl)
+		new Setting(details)
 			.setName('Categories Sheet ID')
 			.setDesc('DON\'T TOUCH UNLESS YOU KNOW WHAT YOU ARE DOING')
 			.addText(text => text
@@ -137,7 +152,7 @@ class SampleSettingTab extends PluginSettingTab {
 					await this.plugin.saveSettings();
 				}));
 		
-		new Setting(containerEl)
+		new Setting(details)
 			.setName('World Sheet ID')
 			.setDesc('DON\'T TOUCH UNLESS YOU KNOW WHAT YOU ARE DOING')
 			.addText(text => text
@@ -148,7 +163,7 @@ class SampleSettingTab extends PluginSettingTab {
 					await this.plugin.saveSettings();
 				}));
 
-		new Setting(containerEl)
+		new Setting(details)
 			.setName('Character Sheet ID')
 			.setDesc('DON\'T TOUCH UNLESS YOU KNOW WHAT YOU ARE DOING')
 			.addText(text => text
@@ -159,7 +174,7 @@ class SampleSettingTab extends PluginSettingTab {
 					await this.plugin.saveSettings();
 				}));
 
-		new Setting(containerEl)
+		new Setting(details)
 			.setName('Prompt Sheet ID')
 			.setDesc('DON\'T TOUCH UNLESS YOU KNOW WHAT YOU ARE DOING')
 			.addText(text => text
@@ -170,7 +185,7 @@ class SampleSettingTab extends PluginSettingTab {
 					await this.plugin.saveSettings();
 				}));
 
-		new Setting(containerEl)
+		new Setting(details)
 			.setName('Plot Sheet ID')
 			.setDesc('DON\'T TOUCH UNLESS YOU KNOW WHAT YOU ARE DOING')
 			.addText(text => text
@@ -178,6 +193,17 @@ class SampleSettingTab extends PluginSettingTab {
 				.setValue(this.plugin.settings.sheets.plot)
 				.onChange(async (value) => {
 					this.plugin.settings.sheets.plot = value;
+					await this.plugin.saveSettings();
+				}));
+
+		new Setting(details)
+			.setName('TTRPG Sheet ID')
+			.setDesc('DON\'T TOUCH UNLESS YOU KNOW WHAT YOU ARE DOING')
+			.addText(text => text
+				.setPlaceholder('973338377')
+				.setValue(this.plugin.settings.sheets.ttrpg)
+				.onChange(async (value) => {
+					this.plugin.settings.sheets.ttrpg = value;
 					await this.plugin.saveSettings();
 				}));
 	}

@@ -23,6 +23,7 @@
             <option value="character">Character</option>
             <option value="plot">Plot</option>
             <option value="prompt">Prompt</option>
+            <option value="ttrpg">TTRPG</option>
         </select>
         <span>Filters:</span>
         <input type="text" bind:value={filters} placeholder="filters">
